@@ -1,2 +1,2 @@
-# leon-javascript-learn
+# leon-rxjs-learn
 for learning
