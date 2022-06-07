@@ -1,35 +1,13 @@
 import 'zone.js';
+import { Student } from './student.js';
 
 // console.log('title:', Object.keys(Zone.current));
 
 const taskId = `task ${+new Date()}`;
 // console.time(taskId);
 
-const person = {
-    name: '小明',
-    age: 18,
-    eat: () => {
-        console.log('start eating');
-        setTimeout(() => {
-            console.log('eating finish');
-        }, 1500);
-    },
-    drink: () => {
-        console.log('start drinking');
-        setTimeout(() => {
-            console.log('drinking finish');
-        }, 1500);
-    }
-};
-
-
-
-const executeContext = () => {
-    person.eat();
-    person.drink();
-};
-
 var myZoneSpec = {
+    name: 'my zone 1',
     // onHasTask(delegate, current, target, hasTaskState) {
     //     console.log(hasTaskState.change);          // "macroTask"
     //     console.log(hasTaskState.macroTask);       // true
@@ -57,6 +35,10 @@ var myZoneSpec = {
 
 const myZone = Zone.current.fork(myZoneSpec);
 
-myZone.run(executeContext);
+myZone.run(() => {
+    const s = new Student('Hellen');
+    s.eat();
+    s.drink();
+});
 
 // console.timeLog(taskId);
